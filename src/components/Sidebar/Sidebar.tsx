@@ -13,7 +13,7 @@ const Title = () => {
   );
 };
 
-const Sidebar = ({ isSideBarToggleClicked }: any) => {
+const Sidebar = ({ isSideBarToggleClicked, onSideBarToggleClick }: any) => {
   return (
     <div
       className={`
@@ -28,7 +28,10 @@ const Sidebar = ({ isSideBarToggleClicked }: any) => {
         <SearchBar isSideBarToggleClicked={isSideBarToggleClicked} />
         <RouteSelect isSideBarToggleClicked={isSideBarToggleClicked} />
       </div>
-      <Settings isSideBarToggleClicked={isSideBarToggleClicked} />
+      <Settings
+        isSideBarToggleClicked={isSideBarToggleClicked}
+        onSideBarToggleClick={onSideBarToggleClick}
+      />
     </div>
   );
 };
