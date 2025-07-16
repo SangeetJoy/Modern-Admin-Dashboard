@@ -1,6 +1,4 @@
-import { MdKeyboardArrowLeft } from "react-icons/md";
-
-const MainArea = ({ onSideBarToggleClick }: any) => {
+const MainArea = () => {
   return <div className="bg-white rounded-lg shadow pb-4 h-[200vh] "></div>;
 };
 
