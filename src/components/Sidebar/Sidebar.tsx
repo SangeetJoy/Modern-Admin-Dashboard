@@ -1,6 +1,7 @@
 import RouteSelect from "../RouteSelect/RouteSelect";
 import SearchBar from "../SearchBar/SearchBar";
-import Settings from "../Settings/Settings";
+import SideBarFooter from "../SideBarFooter/SideBarFooter";
+import Settings from "../SideBarFooter/SideBarFooter";
 
 const Title = () => {
   return (
@@ -28,7 +29,7 @@ const Sidebar = ({ isSideBarToggleClicked, onSideBarToggleClick }: any) => {
         <SearchBar isSideBarToggleClicked={isSideBarToggleClicked} />
         <RouteSelect isSideBarToggleClicked={isSideBarToggleClicked} />
       </div>
-      <Settings
+      <SideBarFooter
         isSideBarToggleClicked={isSideBarToggleClicked}
         onSideBarToggleClick={onSideBarToggleClick}
       />
