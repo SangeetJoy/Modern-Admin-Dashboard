@@ -1,5 +1,11 @@
+import TopBar from "../../components/TopBar/TopBar";
+
 const Customers = () => {
-  return <h1> Customers</h1>;
+  return (
+    <>
+      <TopBar />
+    </>
+  );
 };
 
 export default Customers;
