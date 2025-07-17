@@ -1,5 +1,4 @@
 import { FaSearch } from "react-icons/fa";
-import RouteSelect from "../RouteSelect/RouteSelect";
 
 const SearchBar = ({
   isSideBarToggleClicked,
