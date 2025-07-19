@@ -5,34 +5,35 @@ import {
 } from "@tanstack/react-table";
 import { TABLE_DATA_1 } from "../../../../data";
 import { useState } from "react";
-
-console.log({ TABLE_DATA_1 });
-
-// const statusColorMap = {
-//     done: "",
-//     in
-// }
+import Avatar from "../../../components/Avatar/Avatar";
+import StatusBadge from "../../../components/StatusBadge/StatusBadge";
 
 const columns = [
   {
     accessorKey: "task",
     header: () => <span className="flex items-center">Task</span>,
     cell: (props: any) => <p>{props.getValue()}</p>,
-    size: 120,
+    size: 110,
     minSize: 50,
   },
   {
     accessorKey: "assignee",
     header: () => <span className="flex items-center">Assignee</span>,
-    cell: (props: any) => <p>{props.getValue()}</p>,
-    size: 70,
+    cell: (props: any) => <Avatar avatarDetails={props.getValue()} />,
+    size: 80,
     minSize: 50,
   },
   {
     accessorKey: "status",
     header: () => <span className="flex items-center">Status</span>,
     cell: (props: any) => (
-      <p className="w-fit bg-[#ffed90] p-2 rounded-xl">{props.getValue()}</p>
+      // <p
+      //   className={`w-fit p-2 rounded-xl`}
+      //   style={{ backgroundColor: props.getValue()?.color }}
+      // >
+      //   {props.getValue().name}
+      // </p>
+      <StatusBadge name={props.getValue().name} />
     ),
     size: 80,
     minSize: 40,
@@ -66,19 +67,17 @@ const CustomerTable = () => {
     enableColumnResizing: true,
   });
 
-  //   console.log({ table: table.getHeaderGroups() });
-
   return (
     <div className="flex flex-col min-h-screen mx-auto py-12 px-4 sm:px-6 lg:px-8">
       <div className="overflow-x-auto shadow-md rounded-lg bg-white">
         <table className="min-w-full table-fixed w-full border-collapse">
           <thead className="border-b border-gray-300">
             {table.getHeaderGroups().map((headerGroup) => (
-              <tr key={headerGroup.id}>
+              <tr key={headerGroup.id} className="bg-stone-200">
                 {headerGroup.headers.map((header) => (
                   <th
                     key={header.id}
-                    className="group px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider relative"
+                    className="group px-6 py-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider relative"
                     style={{ width: `${header.getSize()}px` }}
                   >
                     <div>
@@ -107,7 +106,7 @@ const CustomerTable = () => {
                 {row.getVisibleCells().map((cell) => (
                   <td
                     key={cell.id}
-                    className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+                    className="px-6 py-6 whitespace-nowrap text-sm text-gray-500"
                     style={{ width: `${cell.column.getSize()}px` }}
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}

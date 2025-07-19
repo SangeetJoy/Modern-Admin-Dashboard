@@ -1,66 +1,128 @@
 interface TableProps {
     task: string
-    status: string
+    status: STATUS_OBJECT
     due: any
     notes: string 
-    assignee: string
+    assignee: AssigneeDetails
 }
+
+export interface AssigneeDetails {
+    firstName: string;
+    lastName: string;
+    profileImage: string;
+}
+
+export interface STATUS_OBJECT {
+    name: string
+    id: number
+    color: string
+}
+
+
+const STATUS_IN_PROGRESS = {
+    name: "In Progress",
+    id: 1,
+    color: "#ffed90"
+}
+
+const STATUS_IN_REVIEW = {
+    name: "In Review",
+    id: 1,
+    color: "#a8eaff"
+}
+
+const STATUS_DONE = {
+    name: "Done",
+    id: 1,
+    color: "#b6f5a9"
+}
+
+const STATUS_BLOCKED = {
+    name: "Blocked",
+    id: 1,
+    color: "#ffc1c1"
+}
+
+
+
+const STATUSES = [STATUS_IN_PROGRESS, STATUS_IN_REVIEW, STATUS_DONE, STATUS_BLOCKED]
 
 export const TABLE_DATA_1: TableProps[] = [
     {
         task: "Add a new feature",
-        status: "In Progress",
+        status: STATUS_IN_PROGRESS,
         due: new Date("2025/01/15"),
         notes: "This is a note",
-        assignee: "Sangeet Joy"
+        assignee: {
+            firstName: "Sangeet",
+            lastName: "Joy",
+            profileImage: "src/assets/joy.png"
+        }
     },
     {
         task: "Add a new feature",
-        status: "In Progress",
+        status: STATUS_IN_PROGRESS,
         due: new Date("2025/01/15"),
         notes: "This is a note",
-        assignee: "Koyel"
+        assignee: {
+            firstName: "Koyel",
+            lastName: "Bhattacharya",
+            profileImage: "src/assets/koyel.png"
+        }
     },
     {
         task: "Write integration test",
-        status: "Done",
+        status: STATUS_DONE,
         due: null,
         notes: "This is a note",
-        assignee: "Sangeet Joy"
+        assignee: {
+            firstName: "Koyel",
+            lastName: "Bhattacharya",
+            profileImage: "src/assets/koyel.png"
+        }
     },
     {
         task: "Deploy to prod",
-        status: "In Review",
+        status: STATUS_IN_REVIEW,
         due: new Date("2025/01/19"),
         notes: "",
-        assignee: "Pritam ghosh"
+        assignee: {
+            firstName: "Debanjan",
+            lastName: "tanwar",
+            profileImage: "src/assets/debanjan.png"
+        }
     },
     {
         task: "Clean up database",
-        status: "In Progress",
+        status: STATUS_DONE,
         due: new Date("2025/03/14"),
         notes: "remove old data",
-        assignee: "Manish tanwar"
+        assignee: {
+            firstName: "Rohan",
+            lastName: "Bose",
+            profileImage: "src/assets/rohan.png"
+        }
     },
     {
         task: "Create the lamda function",
-        status: "In Review",
+        status: STATUS_IN_REVIEW,
         due: new Date("2025/04/19"),
         notes: "deploy to AWS",
-        assignee: "Raghu j"
+        assignee: {
+            firstName: "Debanjan",
+            lastName: "Tanwar",
+            profileImage: "src/assets/debanjan.png"
+        }
     },
     {
-        task: "Write the terraform logic",
-        status: "In Progress",
-        due: new Date("2025/05/19"),
-        notes: "deploy to cloud",
-        assignee: "Kesha patel"
+        task: "Clean up database",
+        status: STATUS_BLOCKED,
+        due: new Date("2025/03/14"),
+        notes: "remove old data",
+        assignee: {
+            firstName: "Rohan",
+            lastName: "Bose",
+            profileImage: "src/assets/rohan.png"
+        }
     },
-    {
-        task: "Add the CDN logic",
-        status: "Done",
-        due: new Date("2025/06/19"),
-        notes: "purge the cache",
-        assignee: "Sangeet Joy"
-    }
 ]
