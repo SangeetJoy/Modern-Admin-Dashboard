@@ -4,7 +4,7 @@ import { IoCheckmarkDoneOutline } from "react-icons/io5";
 import { MdBlock } from "react-icons/md";
 import { clsx } from "clsx"; // optional, for conditional classes
 
-const StatusBadge = ({ name }) => {
+const StatusBadge = ({ name }: { name: string }) => {
   const config = {
     "in progress": {
       icon: <AiOutlineLoading3Quarters className="animate-spin mr-1" />,
@@ -29,7 +29,7 @@ const StatusBadge = ({ name }) => {
   return (
     <div
       className={clsx(
-        "inline-flex items-center px-4 py-2 rounded-xl text-sm font-medium",
+        "inline-flex items-center px-4 py-2 rounded-xl text-sm font-medium hover:shadow-md transition-all cursor-pointer",
         status.bg
       )}
     >

@@ -56,7 +56,9 @@ export const TABLE_DATA_1: TableProps[] = [
         assignee: {
             firstName: "Sangeet",
             lastName: "Joy",
-            profileImage: "src/assets/joy.png"
+            profileImage: "src/assets/joy.png",
+            role: "UI Developer",
+            email: "Sangeet.joy@gmail.com"
         }
     },
     {
@@ -67,7 +69,9 @@ export const TABLE_DATA_1: TableProps[] = [
         assignee: {
             firstName: "Koyel",
             lastName: "Bhattacharya",
-            profileImage: "src/assets/koyel.png"
+            profileImage: "src/assets/koyel.png",
+            role: "UI Developer",
+            email: "Sangeet.joy@gmail.com"
         }
     },
     {
@@ -78,7 +82,9 @@ export const TABLE_DATA_1: TableProps[] = [
         assignee: {
             firstName: "Koyel",
             lastName: "Bhattacharya",
-            profileImage: "src/assets/koyel.png"
+            profileImage: "src/assets/koyel.png",
+                        role: "UI Developer",
+            email: "Sangeet.joy@gmail.com"
         }
     },
     {
@@ -89,7 +95,9 @@ export const TABLE_DATA_1: TableProps[] = [
         assignee: {
             firstName: "Debanjan",
             lastName: "tanwar",
-            profileImage: "src/assets/debanjan.png"
+            profileImage: "src/assets/debanjan.png",
+                        role: "UI Developer",
+            email: "Sangeet.joy@gmail.com"
         }
     },
     {
@@ -100,7 +108,9 @@ export const TABLE_DATA_1: TableProps[] = [
         assignee: {
             firstName: "Rohan",
             lastName: "Bose",
-            profileImage: "src/assets/rohan.png"
+            profileImage: "src/assets/rohan.png",
+                        role: "UI Developer",
+            email: "Sangeet.joy@gmail.com"
         }
     },
     {
@@ -111,7 +121,9 @@ export const TABLE_DATA_1: TableProps[] = [
         assignee: {
             firstName: "Debanjan",
             lastName: "Tanwar",
-            profileImage: "src/assets/debanjan.png"
+            profileImage: "src/assets/debanjan.png",
+                        role: "UI Developer",
+            email: "Sangeet.joy@gmail.com"
         }
     },
     {
@@ -122,7 +134,9 @@ export const TABLE_DATA_1: TableProps[] = [
         assignee: {
             firstName: "Rohan",
             lastName: "Bose",
-            profileImage: "src/assets/rohan.png"
+            profileImage: "src/assets/rohan.png",
+                        role: "UI Developer",
+            email: "Sangeet.joy@gmail.com"
         }
     },
 ]

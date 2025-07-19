@@ -7,6 +7,8 @@ import { TABLE_DATA_1 } from "../../../../data";
 import { useState } from "react";
 import Avatar from "../../../components/Avatar/Avatar";
 import StatusBadge from "../../../components/StatusBadge/StatusBadge";
+import StatusPopover from "../../../components/StatusPopover/StatusPopover";
+import ProfilePopover from "../../../components/ProfilePopover/ProfilePopover";
 
 const columns = [
   {
@@ -16,25 +18,39 @@ const columns = [
     size: 110,
     minSize: 50,
   },
+  // {
+  //   accessorKey: "assignee",
+  //   header: () => <span className="flex items-center">Assignee</span>,
+  //   cell: (props: any) => <Avatar avatarDetails={props.getValue()} />,
+  //   size: 80,
+  //   minSize: 50,
+  // },
   {
     accessorKey: "assignee",
     header: () => <span className="flex items-center">Assignee</span>,
-    cell: (props: any) => <Avatar avatarDetails={props.getValue()} />,
+    cell: (props: any) => {
+      return <ProfilePopover avatarDetails={props.getValue()} />;
+    },
     size: 80,
     minSize: 50,
   },
   {
     accessorKey: "status",
     header: () => <span className="flex items-center">Status</span>,
-    cell: (props: any) => (
-      // <p
-      //   className={`w-fit p-2 rounded-xl`}
-      //   style={{ backgroundColor: props.getValue()?.color }}
-      // >
-      //   {props.getValue().name}
-      // </p>
-      <StatusBadge name={props.getValue().name} />
-    ),
+    cell: (props: any) => {
+      const { name } = props.getValue();
+
+      return (
+        <StatusPopover
+          currentStatus={name}
+          onSelect={(newStatus) => {
+            console.log("Status changed to:", newStatus);
+            // Optional: Update the row's status here if you want immediate UI updates
+            // This depends on whether you're maintaining the table data in local state.
+          }}
+        />
+      );
+    },
     size: 80,
     minSize: 40,
   },

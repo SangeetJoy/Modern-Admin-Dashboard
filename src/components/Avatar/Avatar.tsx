@@ -6,7 +6,7 @@ interface AvatarDetails {
 
 const Avatar = ({ avatarDetails }: AvatarDetails) => {
   return (
-    <div className="flex items-center space-x-3">
+    <div className="flex items-center space-x-3 cursor-pointer">
       <img
         src={avatarDetails.profileImage}
         alt={avatarDetails.firstName}
