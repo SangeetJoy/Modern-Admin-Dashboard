@@ -27,6 +27,8 @@ const StatusPopover = ({ getValue, table, row, column }: any) => {
   const { name, id, color } = getValue();
   const { updateData } = table.options.meta;
 
+  // console.log({ id, column: column.id, rowIndex: row.index });
+
   return (
     <Popover trigger={<StatusBadge name={name} />}>
       {STATUSES.map((status) => (

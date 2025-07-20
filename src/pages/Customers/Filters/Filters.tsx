@@ -4,6 +4,7 @@ import Popover from "../../../components/Popover/Popover";
 import MenuItem from "../../../components/MenuItem/MenuItem";
 import { STATUSES } from "../../../../data";
 import { StatusIconMap } from "../../../components/StatusPopover/StatusPopover";
+import { FaCheck } from "react-icons/fa6";
 
 const StatusFilterButton = () => {
   return (
@@ -60,12 +61,38 @@ const Filters = ({ setColumnFilters, columnFilters }) => {
   const searchFilterValue =
     columnFilters.find((filter) => filter.id === "task")?.value || "";
 
+  const filterStatuses =
+    columnFilters.find((filter) => filter.id === "status")?.value || [];
+
   const onSearchFilterChange = (id, value) => {
     setColumnFilters((prev) => [
       ...prev.filter((f) => f.id !== id),
       { id, value },
     ]);
   };
+
+  const onStatusFilterClick = (statusId, isActive) => {
+    setColumnFilters((prev) => {
+      const statuses = prev.find((filter) => filter.id === "status")?.value;
+
+      if (!statuses) {
+        return [...prev, { id: "status", value: [statusId] }];
+      }
+
+      return prev.map((filter) =>
+        filter.id === "status"
+          ? {
+              ...filter,
+              value: isActive
+                ? statuses.filter((statusFilter) => statusFilter !== statusId)
+                : [...statuses, statusId],
+            }
+          : filter
+      );
+    });
+  };
+
+  console.log({ columnFilters });
 
   return (
     <div className="flex gap-3 mb-5">
@@ -75,13 +102,21 @@ const Filters = ({ setColumnFilters, columnFilters }) => {
       />
       <Popover trigger={<StatusFilterButton />}>
         {STATUSES.map((status) => (
-          <div className="px-3 py-1.5">
+          <div className="px-3 py-1.5 flex items-center my-1">
             <MenuItem
               key={status.id}
               icon={StatusIconMap[status.name.toLowerCase()].icon}
               label={status.name}
-              //   onClick={() => updateData(row.index, column.id, status)}
+              onClick={() =>
+                onStatusFilterClick(
+                  status.id,
+                  filterStatuses.includes(status.id)
+                )
+              }
             />
+            {filterStatuses.includes(status.id) && (
+              <FaCheck className="mr-1" color="green" />
+            )}
           </div>
         ))}
       </Popover>

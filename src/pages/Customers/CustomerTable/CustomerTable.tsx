@@ -19,7 +19,7 @@ const columns = [
     cell: (props: any) => <p>{props.getValue()}</p>,
     size: 110,
     minSize: 50,
-    // filterFn: "includesString",
+    filterFn: "includesString",
   },
   {
     accessorKey: "assignee",
@@ -36,6 +36,11 @@ const columns = [
     cell: StatusPopover,
     size: 80,
     minSize: 40,
+    enableColumnFilter: true,
+    filterFn: (row, columnId, filterStatuses) => {
+      const status = row.getValue(columnId);
+      return filterStatuses.includes(status?.id);
+    },
   },
   {
     accessorKey: "due",

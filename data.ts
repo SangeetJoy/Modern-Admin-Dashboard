@@ -29,19 +29,19 @@ const STATUS_IN_PROGRESS = {
 
 const STATUS_IN_REVIEW = {
     name: "In Review",
-    id: 1,
+    id: 2,
     color: "#a8eaff"
 }
 
 const STATUS_DONE = {
     name: "Done",
-    id: 1,
+    id: 3,
     color: "#b6f5a9"
 }
 
 const STATUS_BLOCKED = {
     name: "Blocked",
-    id: 1,
+    id: 4,
     color: "#ffc1c1"
 }
 
