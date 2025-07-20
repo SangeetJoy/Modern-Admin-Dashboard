@@ -4,41 +4,38 @@ import { IoCheckmarkDoneOutline } from "react-icons/io5";
 import MenuItem from "../MenuItem/MenuItem";
 import Popover from "../Popover/Popover";
 import StatusBadge from "../StatusBadge/StatusBadge";
+import { STATUSES } from "../../../data";
 
-const StatusPopover = ({
-  currentStatus,
-  onSelect,
-}: {
-  currentStatus: string;
-  onSelect: (status: string) => void;
-}) => {
-  const statuses = [
-    {
-      name: "In Progress",
+const StatusPopover = ({ getValue, table, row, column }: any) => {
+  const { name, id, color } = getValue();
+  const { updateData } = table.options.meta;
+
+  const StatusIconMap: any = {
+    "in progress": {
       icon: (
         <AiOutlineLoading3Quarters className="w-4 h-4 animate-spin text-amber-400" />
       ),
     },
-    {
-      name: "In Review",
+    "in review": {
       icon: <MdOutlineRateReview className="w-4 h-4 text-blue-400" />,
     },
-    {
-      name: "Done",
+    done: {
       icon: <IoCheckmarkDoneOutline className="w-4 h-4 text-green-400" />,
     },
-    { name: "Blocked", icon: <MdBlock className="w-4 h-4 text-red-400" /> },
-  ];
+    blocked: {
+      icon: <MdBlock className="w-4 h-4 text-red-400" />,
+    },
+  };
 
   return (
-    <Popover trigger={<StatusBadge name={currentStatus} />}>
-      {statuses.map((status) => (
+    <Popover trigger={<StatusBadge name={name} />}>
+      {STATUSES.map((status) => (
         <div className="px-3 py-1.5">
           <MenuItem
-            key={status.name}
-            icon={status.icon}
+            key={status.id}
+            icon={StatusIconMap[status.name.toLowerCase()].icon}
             label={status.name}
-            onClick={() => onSelect(status.name)}
+            onClick={() => updateData(row.index, column.id, status)}
           />
         </div>
       ))}

@@ -37,20 +37,7 @@ const columns = [
   {
     accessorKey: "status",
     header: () => <span className="flex items-center">Status</span>,
-    cell: (props: any) => {
-      const { name } = props.getValue();
-
-      return (
-        <StatusPopover
-          currentStatus={name}
-          onSelect={(newStatus) => {
-            console.log("Status changed to:", newStatus);
-            // Optional: Update the row's status here if you want immediate UI updates
-            // This depends on whether you're maintaining the table data in local state.
-          }}
-        />
-      );
-    },
+    cell: StatusPopover,
     size: 80,
     minSize: 40,
   },
@@ -81,6 +68,14 @@ const CustomerTable = () => {
     getCoreRowModel: getCoreRowModel(),
     columnResizeMode: "onChange",
     enableColumnResizing: true,
+    meta: {
+      updateData: (rowIndex, columnId, value) =>
+        setData((prev) =>
+          prev.map((row, index) =>
+            index === rowIndex ? { ...prev[rowIndex], [columnId]: value } : row
+          )
+        ),
+    },
   });
 
   return (

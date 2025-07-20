@@ -10,6 +10,8 @@ export interface AssigneeDetails {
     firstName: string;
     lastName: string;
     profileImage: string;
+    role: string;
+    email: string
 }
 
 export interface STATUS_OBJECT {
@@ -45,7 +47,7 @@ const STATUS_BLOCKED = {
 
 
 
-const STATUSES = [STATUS_IN_PROGRESS, STATUS_IN_REVIEW, STATUS_DONE, STATUS_BLOCKED]
+export const STATUSES = [STATUS_IN_PROGRESS, STATUS_IN_REVIEW, STATUS_DONE, STATUS_BLOCKED]
 
 export const TABLE_DATA_1: TableProps[] = [
     {
@@ -70,7 +72,7 @@ export const TABLE_DATA_1: TableProps[] = [
             firstName: "Koyel",
             lastName: "Bhattacharya",
             profileImage: "src/assets/koyel.png",
-            role: "UI Developer",
+            role: "Data Scientist",
             email: "Sangeet.joy@gmail.com"
         }
     },
@@ -83,7 +85,7 @@ export const TABLE_DATA_1: TableProps[] = [
             firstName: "Koyel",
             lastName: "Bhattacharya",
             profileImage: "src/assets/koyel.png",
-                        role: "UI Developer",
+            role: "Data Scientist",
             email: "Sangeet.joy@gmail.com"
         }
     },
@@ -96,7 +98,7 @@ export const TABLE_DATA_1: TableProps[] = [
             firstName: "Debanjan",
             lastName: "tanwar",
             profileImage: "src/assets/debanjan.png",
-                        role: "UI Developer",
+            role: "Backend Dev",
             email: "Sangeet.joy@gmail.com"
         }
     },
@@ -109,7 +111,7 @@ export const TABLE_DATA_1: TableProps[] = [
             firstName: "Rohan",
             lastName: "Bose",
             profileImage: "src/assets/rohan.png",
-                        role: "UI Developer",
+            role: "Tester",
             email: "Sangeet.joy@gmail.com"
         }
     },
@@ -122,7 +124,7 @@ export const TABLE_DATA_1: TableProps[] = [
             firstName: "Debanjan",
             lastName: "Tanwar",
             profileImage: "src/assets/debanjan.png",
-                        role: "UI Developer",
+            role: "Backend Dev",
             email: "Sangeet.joy@gmail.com"
         }
     },
@@ -135,7 +137,7 @@ export const TABLE_DATA_1: TableProps[] = [
             firstName: "Rohan",
             lastName: "Bose",
             profileImage: "src/assets/rohan.png",
-                        role: "UI Developer",
+            role: "Tester",
             email: "Sangeet.joy@gmail.com"
         }
     },
