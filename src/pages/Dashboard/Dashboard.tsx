@@ -31,6 +31,12 @@ const Dashboard = () => {
           email="s.joy@gmail.com"
           imageUrl="src/assets/rohan.png"
         />
+        <ProfileCard
+          name="Saptarshi"
+          role="tester"
+          email="s.joy@gmail.com"
+          imageUrl="src/assets/saptarshi.png"
+        />
       </div>
     </>
   );

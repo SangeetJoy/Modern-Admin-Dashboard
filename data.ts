@@ -51,7 +51,7 @@ export const STATUSES = [STATUS_IN_PROGRESS, STATUS_IN_REVIEW, STATUS_DONE, STAT
 
 export const TABLE_DATA_1: TableProps[] = [
     {
-        task: "Add a new feature",
+        task: "Add the live stream feature",
         status: STATUS_IN_PROGRESS,
         due: new Date("2025/01/15"),
         notes: "This is a note",
@@ -64,7 +64,7 @@ export const TABLE_DATA_1: TableProps[] = [
         }
     },
     {
-        task: "Add a new feature",
+        task: "Add a cloud integration",
         status: STATUS_IN_PROGRESS,
         due: new Date("2025/01/15"),
         notes: "This is a note",
@@ -73,7 +73,7 @@ export const TABLE_DATA_1: TableProps[] = [
             lastName: "Bhattacharya",
             profileImage: "src/assets/koyel.png",
             role: "Data Scientist",
-            email: "Sangeet.joy@gmail.com"
+            email: "koyel.b@gmail.com"
         }
     },
     {
@@ -86,7 +86,7 @@ export const TABLE_DATA_1: TableProps[] = [
             lastName: "Bhattacharya",
             profileImage: "src/assets/koyel.png",
             role: "Data Scientist",
-            email: "Sangeet.joy@gmail.com"
+            email: "koyel.b@gmail.com"
         }
     },
     {
@@ -99,11 +99,24 @@ export const TABLE_DATA_1: TableProps[] = [
             lastName: "tanwar",
             profileImage: "src/assets/debanjan.png",
             role: "Backend Dev",
-            email: "Sangeet.joy@gmail.com"
+            email: "debanjan.t@gmail.com"
         }
     },
     {
-        task: "Clean up database",
+        task: "Create the sumologic integration layer",
+        status: STATUS_IN_REVIEW,
+        due: new Date("2025/01/19"),
+        notes: "",
+        assignee: {
+            firstName: "Saptarshi",
+            lastName: "Roy",
+            profileImage: "src/assets/saptarshi.png",
+            role: "Infra dev",
+            email: "sappy.r@gmail.com"
+        }
+    },
+    {
+        task: "Clean up database for customers",
         status: STATUS_DONE,
         due: new Date("2025/03/14"),
         notes: "remove old data",
@@ -112,7 +125,7 @@ export const TABLE_DATA_1: TableProps[] = [
             lastName: "Bose",
             profileImage: "src/assets/rohan.png",
             role: "Tester",
-            email: "Sangeet.joy@gmail.com"
+            email: "rohan.bose@gmail.com"
         }
     },
     {
@@ -125,11 +138,11 @@ export const TABLE_DATA_1: TableProps[] = [
             lastName: "Tanwar",
             profileImage: "src/assets/debanjan.png",
             role: "Backend Dev",
-            email: "Sangeet.joy@gmail.com"
+            email: "debanjan.t@gmail.com"
         }
     },
     {
-        task: "Clean up database",
+        task: "Add the CDN network layer",
         status: STATUS_BLOCKED,
         due: new Date("2025/03/14"),
         notes: "remove old data",
@@ -138,7 +151,7 @@ export const TABLE_DATA_1: TableProps[] = [
             lastName: "Bose",
             profileImage: "src/assets/rohan.png",
             role: "Tester",
-            email: "Sangeet.joy@gmail.com"
+            email: "rohan.bose@gmail.com"
         }
     },
 ]

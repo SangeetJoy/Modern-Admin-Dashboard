@@ -1,6 +1,7 @@
 import {
   flexRender,
   getCoreRowModel,
+  getFilteredRowModel,
   useReactTable,
 } from "@tanstack/react-table";
 import { TABLE_DATA_1 } from "../../../../data";
@@ -9,6 +10,7 @@ import Avatar from "../../../components/Avatar/Avatar";
 import StatusBadge from "../../../components/StatusBadge/StatusBadge";
 import StatusPopover from "../../../components/StatusPopover/StatusPopover";
 import ProfilePopover from "../../../components/ProfilePopover/ProfilePopover";
+import Filters from "../Filters/Filters";
 
 const columns = [
   {
@@ -17,14 +19,8 @@ const columns = [
     cell: (props: any) => <p>{props.getValue()}</p>,
     size: 110,
     minSize: 50,
+    // filterFn: "includesString",
   },
-  // {
-  //   accessorKey: "assignee",
-  //   header: () => <span className="flex items-center">Assignee</span>,
-  //   cell: (props: any) => <Avatar avatarDetails={props.getValue()} />,
-  //   size: 80,
-  //   minSize: 50,
-  // },
   {
     accessorKey: "assignee",
     header: () => <span className="flex items-center">Assignee</span>,
@@ -59,8 +55,7 @@ const columns = [
 
 const CustomerTable = () => {
   const [data, setData] = useState(TABLE_DATA_1);
-
-  console.log({ data });
+  const [columnFilters, setColumnFilters] = useState([]);
 
   const table = useReactTable({
     data,
@@ -68,6 +63,10 @@ const CustomerTable = () => {
     getCoreRowModel: getCoreRowModel(),
     columnResizeMode: "onChange",
     enableColumnResizing: true,
+    state: {
+      columnFilters,
+    },
+    getFilteredRowModel: getFilteredRowModel(),
     meta: {
       updateData: (rowIndex, columnId, value) =>
         setData((prev) =>
@@ -80,6 +79,10 @@ const CustomerTable = () => {
 
   return (
     <div className="flex flex-col min-h-screen mx-auto py-12 px-4 sm:px-6 lg:px-8">
+      <Filters
+        columnFilters={columnFilters}
+        setColumnFilters={setColumnFilters}
+      />
       <div className="overflow-x-auto shadow-md rounded-lg bg-white">
         <table className="min-w-full table-fixed w-full border-collapse">
           <thead className="border-b border-gray-300">

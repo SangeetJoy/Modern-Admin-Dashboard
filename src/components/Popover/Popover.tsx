@@ -44,7 +44,7 @@ const Popover = ({
 
       {open && (
         <div
-          className={`absolute z-20 bg-white border border-gray-200 rounded-md shadow-md transition-all`}
+          className={`absolute z-20 bg-white border border-gray-200 rounded-md shadow-md transition-all w-[180px]`}
           style={{
             top: position === "bottom" ? "100%" : undefined,
             bottom: position === "top" ? "100%" : undefined,

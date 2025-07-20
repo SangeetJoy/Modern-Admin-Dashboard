@@ -3,8 +3,6 @@ import Avatar from "../Avatar/Avatar";
 import ProfileCard from "../ProfileCard/ProfileCard";
 
 const ProfilePopover = ({ avatarDetails }: any) => {
-  console.log("ProfilePopover --", { avatarDetails });
-
   return (
     <Popover
       trigger={<Avatar avatarDetails={avatarDetails} />}
