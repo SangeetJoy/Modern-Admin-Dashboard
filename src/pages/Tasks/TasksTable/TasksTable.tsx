@@ -2,6 +2,7 @@ import {
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
+  getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
 import { TABLE_DATA_1 } from "../../../../data";
@@ -13,6 +14,7 @@ import ProfilePopover from "../../../components/ProfilePopover/ProfilePopover";
 import Filters from "../Filters/Filters";
 import { FaCheckCircle } from "react-icons/fa";
 import { MdOutput } from "react-icons/md";
+import { FaSort } from "react-icons/fa";
 
 const SelectedStatusSummary = ({ selectedStatuses }) => {
   if (!selectedStatuses.length) return null;
@@ -75,6 +77,7 @@ const columns = [
     minSize: 40,
     enableColumnFilter: true,
     filterFn: (row, columnId, filterStatuses) => {
+      if (filterStatuses.length === 0) return true;
       const status = row.getValue(columnId);
       return filterStatuses.includes(status?.id);
     },
@@ -108,6 +111,7 @@ const TasksTable = () => {
     state: {
       columnFilters,
     },
+    getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     meta: {
       updateData: (rowIndex, columnId, value) =>
@@ -155,10 +159,17 @@ const TasksTable = () => {
                     className="group px-6 py-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider relative"
                     style={{ width: `${header.getSize()}px` }}
                   >
-                    <div>
+                    <div className="flex items-center gap-2">
                       {flexRender(
                         header.column.columnDef.header,
                         header.getContext()
+                      )}
+                      {header.column.getCanSort() && (
+                        <FaSort
+                          onClick={header.column.getToggleSortingHandler()}
+                          size={13}
+                          className="hover:text-stone-800"
+                        />
                       )}
                     </div>
                     <div

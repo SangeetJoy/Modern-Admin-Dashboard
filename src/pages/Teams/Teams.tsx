@@ -4,7 +4,7 @@ const Teams = () => {
   return (
     <div>
       {" "}
-      <div className="flex justify-between px-5">
+      <div className="flex justify-between gap-3 p-5 mt-5">
         <ProfileCard
           name="sangeet joy"
           role="tester"
