@@ -20,7 +20,7 @@ interface RouteConfig {
 
 const routesConfig: RouteConfig[] = [
   { path: "/", title: "Dashboard", Icon: FaHome },
-  { path: "/customers", title: "Customers", Icon: RiTeamFill },
+  { path: "/customers", title: "Tasks", Icon: RiTeamFill },
 ];
 
 const RouteItem = ({

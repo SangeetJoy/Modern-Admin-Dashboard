@@ -23,7 +23,7 @@ const StatusFilterButton = () => {
         whitespace-nowrap
       "
     >
-      Any Status
+      Status
       <FiChevronDown className="text-stone-500 text-base" />
     </button>
   );

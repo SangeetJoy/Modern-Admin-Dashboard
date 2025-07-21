@@ -11,6 +11,43 @@ import StatusBadge from "../../../components/StatusBadge/StatusBadge";
 import StatusPopover from "../../../components/StatusPopover/StatusPopover";
 import ProfilePopover from "../../../components/ProfilePopover/ProfilePopover";
 import Filters from "../Filters/Filters";
+import { FaCheckCircle } from "react-icons/fa";
+import { MdOutput } from "react-icons/md";
+
+const SelectedStatusSummary = ({ selectedStatuses }) => {
+  if (!selectedStatuses.length) return null;
+
+  return (
+    <div className="flex items-center gap-2 text-sm text-stone-600 mt-2 ml-1 mb-2">
+      <FaCheckCircle className="text-green-600 text-xs" />
+      <span className="font-medium">Filters Applied:</span>
+
+      <div className="flex flex-wrap gap-1">
+        {selectedStatuses.map((status) => (
+          <span
+            key={status}
+            className={`
+              px-2 py-0.5 rounded-full text-xs font-medium
+              ${
+                status.toLowerCase() === "in progress"
+                  ? "bg-yellow-100 text-yellow-800"
+                  : status.toLowerCase() === "done"
+                  ? "bg-green-100 text-green-800"
+                  : status.toLowerCase() === "in review"
+                  ? "bg-blue-100 text-blue-800"
+                  : status.toLowerCase() === "blocked"
+                  ? "bg-red-100 text-red-800"
+                  : "bg-stone-100 text-stone-700"
+              }
+            `}
+          >
+            {status}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const columns = [
   {
@@ -82,12 +119,33 @@ const CustomerTable = () => {
     },
   });
 
+  const filterStatuses =
+    columnFilters.find((filter) => filter.id === "status")?.value || [];
+
+  const idToName = new Map<number, string>(
+    data.map((item) => [
+      item.status.id,
+      item.status.name.toLowerCase().replace(/\s+/g, ""),
+    ])
+  );
+
+  console.log("idToName", idToName);
+
+  const finalArray = filterStatuses.map((id) => idToName.get(id));
+
+  console.log({ finalArray });
+
+  // console.log({ selectedFilterStatuses });
+
   return (
     <div className="flex flex-col min-h-screen mx-auto py-12 px-4 sm:px-6 lg:px-8">
       <Filters
         columnFilters={columnFilters}
         setColumnFilters={setColumnFilters}
       />
+      {Boolean(filterStatuses.length) && (
+        <SelectedStatusSummary selectedStatuses={finalArray} />
+      )}
       <div className="overflow-x-auto shadow-md rounded-lg bg-white">
         <table className="min-w-full table-fixed w-full border-collapse">
           <thead className="border-b border-gray-300">
