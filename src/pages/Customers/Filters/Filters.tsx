@@ -92,7 +92,7 @@ const Filters = ({ setColumnFilters, columnFilters }) => {
     });
   };
 
-  console.log({ columnFilters });
+  // console.log({ columnFilters });
 
   return (
     <div className="flex gap-3 mb-5">

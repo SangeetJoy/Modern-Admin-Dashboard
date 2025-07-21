@@ -123,17 +123,15 @@ const CustomerTable = () => {
     columnFilters.find((filter) => filter.id === "status")?.value || [];
 
   const idToName = new Map<number, string>(
-    data.map((item) => [
+    TABLE_DATA_1.map((item) => [
       item.status.id,
       item.status.name.toLowerCase().replace(/\s+/g, ""),
     ])
   );
 
-  console.log("idToName", idToName);
+  const finalArray = filterStatuses.map((id) => idToName.get(id) || []);
 
-  const finalArray = filterStatuses.map((id) => idToName.get(id));
-
-  console.log({ finalArray });
+  console.log({ filterStatuses, finalArray, idToName });
 
   // console.log({ selectedFilterStatuses });
 
