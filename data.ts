@@ -154,4 +154,69 @@ export const TABLE_DATA_1: TableProps[] = [
             email: "rohan.bose@gmail.com"
         }
     },
+    {
+        task: "Add the CDN network layer",
+        status: STATUS_BLOCKED,
+        due: new Date("2025/03/14"),
+        notes: "remove old data",
+        assignee: {
+            firstName: "Rohan",
+            lastName: "Bose",
+            profileImage: "src/assets/rohan.png",
+            role: "Tester",
+            email: "rohan.bose@gmail.com"
+        }
+    },
+    {
+        task: "Deploy to prod",
+        status: STATUS_IN_REVIEW,
+        due: new Date("2025/01/19"),
+        notes: "",
+        assignee: {
+            firstName: "Debanjan",
+            lastName: "tanwar",
+            profileImage: "src/assets/debanjan.png",
+            role: "Backend Dev",
+            email: "debanjan.t@gmail.com"
+        }
+    },
+    {
+        task: "Add the live stream feature",
+        status: STATUS_IN_PROGRESS,
+        due: new Date("2025/01/15"),
+        notes: "This is a note",
+        assignee: {
+            firstName: "Sangeet",
+            lastName: "Joy",
+            profileImage: "src/assets/joy.png",
+            role: "UI Developer",
+            email: "Sangeet.joy@gmail.com"
+        }
+    },
+    {
+        task: "Add a cloud integration",
+        status: STATUS_IN_PROGRESS,
+        due: new Date("2025/01/15"),
+        notes: "This is a note",
+        assignee: {
+            firstName: "Koyel",
+            lastName: "Bhattacharya",
+            profileImage: "src/assets/koyel.png",
+            role: "Data Scientist",
+            email: "koyel.b@gmail.com"
+        }
+    },
+    {
+        task: "Create the sumologic integration layer",
+        status: STATUS_IN_REVIEW,
+        due: new Date("2025/01/19"),
+        notes: "",
+        assignee: {
+            firstName: "Saptarshi",
+            lastName: "Roy",
+            profileImage: "src/assets/saptarshi.png",
+            role: "Infra dev",
+            email: "sappy.r@gmail.com"
+        }
+    },
 ]

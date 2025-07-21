@@ -2,19 +2,18 @@ import {
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
+  getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
 import { TABLE_DATA_1 } from "../../../../data";
 import { useState } from "react";
-import Avatar from "../../../components/Avatar/Avatar";
-import StatusBadge from "../../../components/StatusBadge/StatusBadge";
 import StatusPopover from "../../../components/StatusPopover/StatusPopover";
 import ProfilePopover from "../../../components/ProfilePopover/ProfilePopover";
 import Filters from "../Filters/Filters";
 import { FaCheckCircle } from "react-icons/fa";
-import { MdOutput } from "react-icons/md";
 import { FaSort } from "react-icons/fa";
+import Pagination from "../../../components/Pagination/Pagination";
 
 const SelectedStatusSummary = ({ selectedStatuses }) => {
   if (!selectedStatuses.length) return null;
@@ -75,6 +74,7 @@ const columns = [
     cell: StatusPopover,
     size: 80,
     minSize: 40,
+    enableSorting: false,
     enableColumnFilter: true,
     filterFn: (row, columnId, filterStatuses) => {
       if (filterStatuses.length === 0) return true;
@@ -111,6 +111,7 @@ const TasksTable = () => {
     state: {
       columnFilters,
     },
+    getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     meta: {
@@ -167,10 +168,16 @@ const TasksTable = () => {
                       {header.column.getCanSort() && (
                         <FaSort
                           onClick={header.column.getToggleSortingHandler()}
-                          size={13}
+                          size={14}
                           className="hover:text-stone-800"
                         />
                       )}
+                      {
+                        {
+                          asc: "⬆️",
+                          desc: "⬇️",
+                        }[header.column.getIsSorted()]
+                      }
                     </div>
                     <div
                       onMouseDown={header.getResizeHandler()}
@@ -203,6 +210,7 @@ const TasksTable = () => {
           </tbody>
         </table>
       </div>
+      <Pagination table={table} />
     </div>
   );
 };
