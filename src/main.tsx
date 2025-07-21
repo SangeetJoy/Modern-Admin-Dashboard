@@ -4,8 +4,10 @@ import App from "./App.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Dashboard from "./pages/Dashboard/Dashboard.tsx";
 import Layout from "./components/Layout/Layout.tsx";
-import Customers from "./pages/Customers/Customers.tsx";
+import Tasks from "./pages/Tasks/Tasks.tsx";
 import Settings from "./pages/Settings/Settings.tsx";
+import Teams from "./pages/Teams/Teams.tsx";
+import Board from "./pages/Board/Board.tsx";
 
 const routerObject = createBrowserRouter([
   {
@@ -13,7 +15,9 @@ const routerObject = createBrowserRouter([
     element: <Layout />,
     children: [
       { index: true, element: <Dashboard /> },
-      { path: "/customers", element: <Customers /> },
+      { path: "/tasks", element: <Tasks /> },
+      { path: "/teams", element: <Teams /> },
+      { path: "/board", element: <Board /> },
     ],
   },
   { path: "/settings", element: <Settings /> },

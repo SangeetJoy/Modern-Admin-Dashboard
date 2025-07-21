@@ -95,7 +95,7 @@ const columns = [
   },
 ];
 
-const CustomerTable = () => {
+const TasksTable = () => {
   const [data, setData] = useState(TABLE_DATA_1);
   const [columnFilters, setColumnFilters] = useState([]);
 
@@ -196,4 +196,4 @@ const CustomerTable = () => {
   );
 };
 
-export default CustomerTable;
+export default TasksTable;

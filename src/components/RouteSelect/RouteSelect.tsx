@@ -3,6 +3,8 @@ import { RiTeamFill } from "react-icons/ri";
 import { FaFileInvoice } from "react-icons/fa6";
 import { FaMoneyCheckAlt } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
+import { BsFillKanbanFill } from "react-icons/bs";
+import { FaTasks } from "react-icons/fa";
 
 interface RouteProps {
   selected: boolean;
@@ -20,7 +22,9 @@ interface RouteConfig {
 
 const routesConfig: RouteConfig[] = [
   { path: "/", title: "Dashboard", Icon: FaHome },
-  { path: "/customers", title: "Tasks", Icon: RiTeamFill },
+  { path: "/tasks", title: "Tasks", Icon: FaTasks },
+  { path: "/teams", title: "Teams", Icon: RiTeamFill },
+  { path: "/board", title: "Board", Icon: BsFillKanbanFill },
 ];
 
 const RouteItem = ({
