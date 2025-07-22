@@ -2,6 +2,8 @@ import { useState } from "react";
 import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import TopBar from "../../components/TopBar/TopBar";
+import { cardsData } from "../../../data";
+import TaskCard from "../../components/TaskCard/TaskCard";
 
 const ItemType = { CARD: "card" };
 
@@ -10,21 +12,6 @@ const columnsData = [
   { id: "inProgress", text: "In Progress" },
   { id: "blocked", text: "Blocked" },
   { id: "done", text: "Done" },
-];
-
-const cardsData = [
-  { id: 1, column_id: "readyForDev", text: "Card 1" },
-  { id: 2, column_id: "inProgress", text: "Card 2" },
-  { id: 3, column_id: "readyForDev", text: "Card 3" },
-  { id: 4, column_id: "readyForDev", text: "Card 4" },
-  { id: 5, column_id: "readyForDev", text: "Card 5" },
-  { id: 6, column_id: "readyForDev", text: "Card 6" },
-  { id: 7, column_id: "readyForDev", text: "Card 7" },
-  { id: 8, column_id: "readyForDev", text: "Card 8" },
-  { id: 9, column_id: "readyForDev", text: "Card 9" },
-  { id: 10, column_id: "readyForDev", text: "Card 10" },
-  { id: 11, column_id: "readyForDev", text: "Card 11" },
-  { id: 12, column_id: "readyForDev", text: "Card 12" },
 ];
 
 const Card = ({ card }) => {
@@ -37,21 +24,17 @@ const Card = ({ card }) => {
   }));
 
   return (
-    <div
+    <TaskCard
       ref={drag}
-      className={`
-        bg-white
-        p-4
-        rounded-lg
-        border
-        hover:shadow
-        transition
-        cursor-pointer
-        ${isDragging ? "opacity-30" : ""}
-      `}
-    >
-      <p className="text-sm text-gray-700">{card.text}</p>
-    </div>
+      isDragging={isDragging}
+      priority={card.priority}
+      text={card.text}
+      subText={card.subText}
+      assignees={card.assignees}
+      comments={card.comments}
+      links={card.links}
+      progress={card.progress}
+    />
   );
 };
 
@@ -68,7 +51,7 @@ const Column = ({ kanban, cards, moveCard }) => {
       ref={drop}
       className="
         flex flex-col
-        w-80
+        w-90
         bg-stone-50
         rounded-lg
         overflow-hidden
