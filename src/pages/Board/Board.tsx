@@ -14,6 +14,13 @@ const columnsData = [
   { id: "done", text: "Done" },
 ];
 
+const borderColorMap = {
+  readyForDev: "border-b-blue-300",
+  inProgress: "border-b-yellow-300",
+  blocked: "border-b-red-300",
+  done: "border-b-green-300",
+};
+
 const Card = ({ card }) => {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemType.CARD,
@@ -24,21 +31,24 @@ const Card = ({ card }) => {
   }));
 
   return (
-    <TaskCard
-      ref={drag}
-      isDragging={isDragging}
-      priority={card.priority}
-      text={card.text}
-      subText={card.subText}
-      assignees={card.assignees}
-      comments={card.comments}
-      links={card.links}
-      progress={card.progress}
-    />
+    <div className="mt-3">
+      <TaskCard
+        ref={drag}
+        isDragging={isDragging}
+        priority={card.priority}
+        text={card.text}
+        subText={card.subText}
+        assignees={card.assignees}
+        comments={card.comments}
+        links={card.links}
+        progress={card.progress}
+      />
+    </div>
   );
 };
 
 const Column = ({ kanban, cards, moveCard }) => {
+  const borderColor = borderColorMap[kanban.id] || "";
   const [, drop] = useDrop(() => ({
     accept: ItemType.CARD,
     drop: (item) => {
@@ -53,12 +63,14 @@ const Column = ({ kanban, cards, moveCard }) => {
         flex flex-col
         w-90
         bg-stone-50
-        rounded-lg
+        rounded-2xl
         overflow-hidden
         flex-shrink-0
       "
     >
-      <div className="bg-stone-200 text-stone-700 font-semibold text-sm px-4 py-2">
+      <div
+        className={` text-stone-700 font-semibold text-sm px-4 py-3 border-b-[3px] ${borderColor}`}
+      >
         {kanban.text}
       </div>
 

@@ -17,12 +17,12 @@ const TaskCard = ({
 }) => {
   return (
     <div
-      className={`bg-white p-2 flex flex-col shadow rounded-lg w-full hover:shadow-md transition cursor-pointer ${
+      className={`bg-white p-2 flex flex-col shadow-md rounded-lg w-full hover:shadow-lg transition cursor-pointer ${
         isDragging ? "opacity-30" : ""
       }`}
       ref={ref}
     >
-      <div className="flex items-center justify-between mb-1">
+      <div className="flex items-center justify-between mb-1.5">
         <div
           className={`px-1.5 py-0.5 rounded text-xs text-stone-900 ${
             priority === "high"

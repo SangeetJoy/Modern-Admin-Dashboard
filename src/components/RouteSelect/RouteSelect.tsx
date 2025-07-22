@@ -22,9 +22,9 @@ interface RouteConfig {
 
 const routesConfig: RouteConfig[] = [
   { path: "/", title: "Dashboard", Icon: FaHome },
+  { path: "/board", title: "Board", Icon: BsFillKanbanFill },
   { path: "/tasks", title: "Tasks", Icon: FaTasks },
   { path: "/teams", title: "Teams", Icon: RiTeamFill },
-  { path: "/board", title: "Board", Icon: BsFillKanbanFill },
 ];
 
 const RouteItem = ({

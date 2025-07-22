@@ -9,24 +9,19 @@ import Settings from "./pages/Settings/Settings.tsx";
 import Teams from "./pages/Teams/Teams.tsx";
 import Board from "./pages/Board/Board.tsx";
 
-const routerObject = createBrowserRouter(
-  [
-    {
-      path: "/",
-      element: <Layout />,
-      children: [
-        { index: true, element: <Dashboard /> },
-        { path: "/tasks", element: <Tasks /> },
-        { path: "/teams", element: <Teams /> },
-        { path: "/board", element: <Board /> },
-      ],
-    },
-    { path: "/settings", element: <Settings /> },
-  ],
+const routerObject = createBrowserRouter([
   {
-    basename: "/Modern-Admin-Dashboard-boilerplate",
-  }
-);
+    path: "/",
+    element: <Layout />,
+    children: [
+      { index: true, element: <Dashboard /> },
+      { path: "/tasks", element: <Tasks /> },
+      { path: "/teams", element: <Teams /> },
+      { path: "/board", element: <Board /> },
+    ],
+  },
+  { path: "/settings", element: <Settings /> },
+]);
 
 createRoot(document.getElementById("root")!).render(
   <RouterProvider router={routerObject} />

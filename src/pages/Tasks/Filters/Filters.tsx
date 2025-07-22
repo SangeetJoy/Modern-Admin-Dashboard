@@ -5,6 +5,7 @@ import MenuItem from "../../../components/MenuItem/MenuItem";
 import { STATUSES } from "../../../../data";
 import { StatusIconMap } from "../../../components/StatusPopover/StatusPopover";
 import { FaCheck } from "react-icons/fa6";
+import { FaFilter } from "react-icons/fa6";
 
 const StatusFilterButton = () => {
   return (
@@ -95,7 +96,7 @@ const Filters = ({ setColumnFilters, columnFilters }) => {
   // console.log({ columnFilters });
 
   return (
-    <div className="flex gap-3 mb-5">
+    <div className="flex gap-3 mb-5 items-center">
       <SearchFilter
         onSearchFilterChange={onSearchFilterChange}
         searchFilterValue={searchFilterValue}
@@ -120,6 +121,7 @@ const Filters = ({ setColumnFilters, columnFilters }) => {
           </div>
         ))}
       </Popover>
+      <FaFilter />
     </div>
   );
 };
