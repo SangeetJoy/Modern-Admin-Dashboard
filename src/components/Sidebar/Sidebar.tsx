@@ -8,14 +8,11 @@ const Title = () => {
       <div className="flex rounded relative gap-2 w-full items-center">
         <picture>
           <source
-            srcSet="src/assets/orange_fire_logo.webp"
+            srcSet="/assets/orange_fire_logo.webp"
             type="image/webp"
             className="size-8 rounded"
           />
-          <img
-            src="src/assets/orange_fire_logo.jpg"
-            className="size-8 rounded"
-          />
+          <img src="/assets/orange_fire_logo.jpg" className="size-8 rounded" />
         </picture>
         <span>Admin Panel</span>
       </div>

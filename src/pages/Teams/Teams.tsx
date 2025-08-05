@@ -9,31 +9,31 @@ const Teams = () => {
           name="sangeet joy"
           role="tester"
           email="s.joy@gmail.com"
-          imageUrl="src/assets/joy.png"
+          imageUrl="/assets/joy.png"
         />
         <ProfileCard
           name="Debanjan tanwar"
           role="tester"
           email="s.joy@gmail.com"
-          imageUrl="src/assets/debanjan.png"
+          imageUrl="/assets/debanjan.png"
         />
         <ProfileCard
           name="Koyel bhatta"
           role="tester"
           email="s.joy@gmail.com"
-          imageUrl="src/assets/koyel.png"
+          imageUrl="/assets/koyel.png"
         />
         <ProfileCard
           name="Rohan"
           role="tester"
           email="s.joy@gmail.com"
-          imageUrl="src/assets/rohan.png"
+          imageUrl="/assets/rohan.png"
         />
         <ProfileCard
           name="Saptarshi"
           role="tester"
           email="s.joy@gmail.com"
-          imageUrl="src/assets/saptarshi.png"
+          imageUrl="/assets/saptarshi.png"
         />
       </div>
     </div>
