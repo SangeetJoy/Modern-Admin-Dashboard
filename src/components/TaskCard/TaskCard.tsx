@@ -1,7 +1,4 @@
-import { BsThreeDots } from "react-icons/bs";
-import { FaRegComments } from "react-icons/fa6";
-import { GoLink } from "react-icons/go";
-import { MdHourglassBottom } from "react-icons/md";
+import { MessageCircle, Paperclip, Hourglass, Ellipsis } from "lucide-react";
 
 const TaskCard = ({
   priority = "High",
@@ -35,7 +32,7 @@ const TaskCard = ({
         >
           {priority}
         </div>
-        <BsThreeDots className="text-gray-500 text-sm" />
+        <Ellipsis className="text-gray-500 text-sm" size={18} />
       </div>
 
       <div className="mb-2">
@@ -48,23 +45,37 @@ const TaskCard = ({
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-1 text-xs text-gray-500">
-            <FaRegComments className="text-gray-400 text-sm" />
+            <MessageCircle className="text-gray-400 text-sm" size={16} />
             <span>{comments.length}</span>
           </div>
           <div className="flex items-center gap-1 text-xs text-gray-500">
-            <GoLink className="text-gray-400 text-sm" />
+            <Paperclip className="text-gray-400 text-sm" size={16} />
             <span>{links.length}</span>
           </div>
         </div>
         <div className="flex items-center -space-x-2">
-          {assignees.map(({ name, imageUrl, id }) => (
-            <img
-              key={id}
-              src={imageUrl}
-              alt=""
-              className="w-6 h-6 rounded-full object-cover border border-white"
-            />
-          ))}
+          {assignees.map(({ name, imageUrl, id, imageUrlSecondary }) => {
+            console.log("Rendering assignee:", { imageUrl });
+            return (
+              <picture key={id}>
+                <source
+                  srcSet={imageUrl}
+                  type="image/webp"
+                  className="w-6 h-6 rounded-full object-cover border border-white"
+                  sizes="24px"
+                  width={24}
+                  height={24}
+                />
+                <img
+                  src={imageUrlSecondary}
+                  className="w-6 h-6 rounded-full object-cover border border-white"
+                  sizes="24px"
+                  width={24}
+                  height={24}
+                />
+              </picture>
+            );
+          })}
         </div>
       </div>
 
@@ -76,7 +87,7 @@ const TaskCard = ({
           />
         </div>
         <div className="flex items-center ml-2 text-xs text-gray-500">
-          <MdHourglassBottom className="text-gray-400 mr-1" />
+          <Hourglass className="text-gray-400 mr-1" size={14} />
           {progress}%
         </div>
       </div>

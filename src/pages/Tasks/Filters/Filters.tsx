@@ -1,11 +1,8 @@
-import { FaSearch } from "react-icons/fa";
-import { FiChevronDown } from "react-icons/fi";
 import Popover from "../../../components/Popover/Popover";
 import MenuItem from "../../../components/MenuItem/MenuItem";
 import { STATUSES } from "../../../../data";
 import { StatusIconMap } from "../../../components/StatusPopover/StatusPopover";
-import { FaCheck } from "react-icons/fa6";
-import { FaFilter } from "react-icons/fa6";
+import { Search, Funnel, Check, ChevronDown } from "lucide-react";
 
 const StatusFilterButton = () => {
   return (
@@ -25,7 +22,7 @@ const StatusFilterButton = () => {
       "
     >
       Status
-      <FiChevronDown className="text-stone-500 text-base" />
+      <ChevronDown className="text-stone-500 text-base" size={18} />
     </button>
   );
 };
@@ -46,7 +43,7 @@ const SearchFilter = ({ onSearchFilterChange, searchFilterValue }) => {
       bg-white
     "
     >
-      <FaSearch className="mr-2 text-stone-500 text-sm" />
+      <Search className="mr-2 text-stone-500 text-sm" size={18} />
       <input
         type="text"
         placeholder="Search tasks..."
@@ -116,12 +113,12 @@ const Filters = ({ setColumnFilters, columnFilters }) => {
               }
             />
             {filterStatuses.includes(status.id) && (
-              <FaCheck className="mr-1" color="green" />
+              <Check className="mr-1" color="green" />
             )}
           </div>
         ))}
       </Popover>
-      <FaFilter />
+      <Funnel size={20} />
     </div>
   );
 };

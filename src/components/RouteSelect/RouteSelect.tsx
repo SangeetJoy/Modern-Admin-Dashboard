@@ -1,10 +1,5 @@
-import { FaHome } from "react-icons/fa";
-import { RiTeamFill } from "react-icons/ri";
-import { FaFileInvoice } from "react-icons/fa6";
-import { FaMoneyCheckAlt } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
-import { BsFillKanbanFill } from "react-icons/bs";
-import { FaTasks } from "react-icons/fa";
+import { House, Users, SquareKanban, ListChecks } from "lucide-react";
 
 interface RouteProps {
   selected: boolean;
@@ -21,10 +16,10 @@ interface RouteConfig {
 }
 
 const routesConfig: RouteConfig[] = [
-  { path: "/", title: "Dashboard", Icon: FaHome },
-  { path: "/board", title: "Board", Icon: BsFillKanbanFill },
-  { path: "/tasks", title: "Tasks", Icon: FaTasks },
-  { path: "/teams", title: "Teams", Icon: RiTeamFill },
+  { path: "/", title: "Dashboard", Icon: House },
+  { path: "/board", title: "Board", Icon: SquareKanban },
+  { path: "/tasks", title: "Tasks", Icon: ListChecks },
+  { path: "/teams", title: "Teams", Icon: Users },
 ];
 
 const RouteItem = ({
@@ -43,7 +38,7 @@ const RouteItem = ({
       }`}
       to={path}
     >
-      <Icon className={isSideBarToggleClicked ? "text-xl " : "text-base"} />
+      <Icon size={isSideBarToggleClicked ? 22 : 18} />
       {!isSideBarToggleClicked && <span>{title}</span>}
     </Link>
   );

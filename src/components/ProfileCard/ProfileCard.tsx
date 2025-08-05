@@ -1,4 +1,4 @@
-import { FaRegHandPaper } from "react-icons/fa";
+import { Hand } from "lucide-react";
 
 const ProfileCard = ({ name, role, email, imageUrl }: any) => {
   return (
@@ -11,7 +11,7 @@ const ProfileCard = ({ name, role, email, imageUrl }: any) => {
         />
         <p className="font-bold text-gray-800 text-lg flex items-center gap-1">
           {name}
-          <FaRegHandPaper className="text-yellow-500 animate-wiggle" />
+          <Hand className="text-yellow-500 animate-wiggle" />
         </p>
         <p className="text-sm text-gray-500">{role}</p>
         <p className="text-xs text-gray-400 mt-1">{email}</p>

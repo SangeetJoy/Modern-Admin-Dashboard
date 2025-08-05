@@ -1,25 +1,22 @@
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { MdOutlineRateReview } from "react-icons/md";
-import { IoCheckmarkDoneOutline } from "react-icons/io5";
-import { MdBlock } from "react-icons/md";
 import { clsx } from "clsx"; // optional, for conditional classes
+import { LoaderCircle, NotebookPen, CheckCheck, ShieldX } from "lucide-react";
 
 const StatusBadge = ({ name }: { name: string }) => {
   const config = {
     "in progress": {
-      icon: <AiOutlineLoading3Quarters className="animate-spin mr-1" />,
+      icon: <LoaderCircle className="animate-spin mr-1" size={18} />,
       bg: "bg-yellow-300 text-gray-700",
     },
     "in review": {
-      icon: <MdOutlineRateReview className="mr-1" />,
+      icon: <NotebookPen className="mr-1" size={18} />,
       bg: "bg-sky-300 text-gray-700",
     },
     done: {
-      icon: <IoCheckmarkDoneOutline className="mr-1" />,
+      icon: <CheckCheck className="mr-1" size={18} />,
       bg: "bg-green-300 text-gray-700",
     },
     blocked: {
-      icon: <MdBlock className="mr-1" />,
+      icon: <ShieldX className="mr-1" size={18} />,
       bg: "bg-red-300 text-gray-700",
     },
   };

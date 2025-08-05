@@ -1,4 +1,4 @@
-import { IoMdSettings } from "react-icons/io";
+import { Settings } from "lucide-react";
 import CollapseButton from "../CollapseButton/CollapseButton";
 import { Link } from "react-router-dom";
 
@@ -17,9 +17,7 @@ const SideBarFooter = ({
         to="/settings"
         className={`mt-2 flex items-center rounded gap-2 w-full px-2 py-1.5 text-sm transition-[box-shadow,_background-color,_color] hover:bg-stone-200 bg-transparent text-stone-500 shadow-none`}
       >
-        <IoMdSettings
-          className={isSideBarToggleClicked ? "text-2xl" : "text-sm"}
-        />
+        <Settings className={isSideBarToggleClicked ? "text-2xl" : "text-sm"} />
         {!isSideBarToggleClicked && <span>Settings</span>}
       </Link>
       <CollapseButton

@@ -1,4 +1,4 @@
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const Pagination = ({ table }: any) => {
   return (
@@ -8,7 +8,7 @@ const Pagination = ({ table }: any) => {
         onClick={() => table.previousPage()}
         disabled={!table.getCanPreviousPage()}
       >
-        <FiChevronLeft className="w-4 h-4" />
+        <ChevronLeft className="w-4 h-4" />
       </button>
 
       <span className="text-gray-600 text-sm">
@@ -25,7 +25,7 @@ const Pagination = ({ table }: any) => {
         disabled={!table.getCanNextPage()}
         // disabled={current === total}
       >
-        <FiChevronRight className="w-4 h-4" />
+        <ChevronRight className="w-4 h-4" />
       </button>
     </div>
   );

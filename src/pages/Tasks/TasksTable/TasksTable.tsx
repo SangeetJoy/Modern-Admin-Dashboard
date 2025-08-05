@@ -11,16 +11,15 @@ import { useState } from "react";
 import StatusPopover from "../../../components/StatusPopover/StatusPopover";
 import ProfilePopover from "../../../components/ProfilePopover/ProfilePopover";
 import Filters from "../Filters/Filters";
-import { FaCheckCircle } from "react-icons/fa";
-import { FaSort } from "react-icons/fa";
 import Pagination from "../../../components/Pagination/Pagination";
+import { CircleCheckBig, ArrowUpDown } from "lucide-react";
 
 const SelectedStatusSummary = ({ selectedStatuses }) => {
   if (!selectedStatuses.length) return null;
 
   return (
     <div className="flex items-center gap-2 text-sm text-stone-600 mt-2 ml-1 mb-2">
-      <FaCheckCircle className="text-green-600 text-xs" />
+      <CircleCheckBig className="text-green-600 text-xs" size={20} />
       <span className="font-medium">Filters Applied:</span>
 
       <div className="flex flex-wrap gap-1">
@@ -166,7 +165,7 @@ const TasksTable = () => {
                         header.getContext()
                       )}
                       {header.column.getCanSort() && (
-                        <FaSort
+                        <ArrowUpDown
                           onClick={header.column.getToggleSortingHandler()}
                           size={14}
                           className="hover:text-stone-800"

@@ -1,4 +1,4 @@
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface CollapseButtonProps {
   onSideBarToggleClick: any;
@@ -17,9 +17,9 @@ const CollapseButton = ({
       }`}
     >
       {isSideBarToggleClicked ? (
-        <MdKeyboardArrowRight />
+        <ChevronRight size={18} />
       ) : (
-        <MdKeyboardArrowLeft />
+        <ChevronLeft size={18} />
       )}
     </button>
   );

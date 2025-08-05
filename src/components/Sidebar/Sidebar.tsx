@@ -7,7 +7,17 @@ const Title = () => {
   return (
     <div className="border-b mb-4 pb-4 border-stone-300">
       <div className="flex rounded relative gap-2 w-full items-center">
-        <img src="src/assets/orange_fire_logo.jpg" className="size-8 rounded" />
+        <picture>
+          <source
+            srcSet="src/assets/orange_fire_logo.webp"
+            type="image/webp"
+            className="size-8 rounded"
+          />
+          <img
+            src="src/assets/orange_fire_logo.jpg"
+            className="size-8 rounded"
+          />
+        </picture>
         <span>Admin Panel</span>
       </div>
     </div>
