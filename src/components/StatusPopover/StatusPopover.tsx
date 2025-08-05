@@ -20,7 +20,7 @@ export const StatusIconMap: any = {
 };
 
 const StatusPopover = ({ getValue, table, row, column }: any) => {
-  const { name, id, color } = getValue();
+  const { name } = getValue();
   const { updateData } = table.options.meta;
 
   // console.log({ id, column: column.id, rowIndex: row.index });

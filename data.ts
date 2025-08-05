@@ -1,4 +1,6 @@
-interface TableProps {
+import type { Card } from "./src/types";
+
+export interface TableProps {
   task: string;
   status: STATUS_OBJECT;
   due: any;
@@ -223,7 +225,7 @@ export const TABLE_DATA_1: TableProps[] = [
   },
 ];
 
-export const cardsData = [
+export const cardsData: Card[] = [
   {
     id: 1,
     column_id: "readyForDev",

@@ -4,24 +4,36 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import TopBar from "../../components/TopBar/TopBar";
 import { cardsData } from "../../../data";
 import TaskCard from "../../components/TaskCard/TaskCard";
+import type { Card as CardType } from "../../types";
 
-const ItemType = { CARD: "card" };
+type DragItem = {
+  id: number;
+  type: string;
+};
 
-const columnsData = [
+type KanbanColumn = {
+  id: string;
+  text: string;
+};
+
+const ItemType = { CARD: "card" } as const;
+
+const columnsData: KanbanColumn[] = [
   { id: "readyForDev", text: "Ready For Dev" },
   { id: "inProgress", text: "In Progress" },
   { id: "blocked", text: "Blocked" },
   { id: "done", text: "Done" },
 ];
 
-const borderColorMap = {
+const borderColorMap: Record<string, string> = {
   readyForDev: "border-b-blue-300",
   inProgress: "border-b-yellow-300",
   blocked: "border-b-red-300",
   done: "border-b-green-300",
 };
 
-const Card = ({ card }) => {
+// 🧩 Renamed to avoid name clash with imported `CardType`
+const Card = ({ card }: { card: CardType }) => {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemType.CARD,
     item: { id: card.id },
@@ -47,9 +59,18 @@ const Card = ({ card }) => {
   );
 };
 
-const Column = ({ kanban, cards, moveCard }) => {
+const Column = ({
+  kanban,
+  cards,
+  moveCard,
+}: {
+  kanban: KanbanColumn;
+  cards: CardType[];
+  moveCard: (cardId: number, targetColumnId: string) => void;
+}) => {
   const borderColor = borderColorMap[kanban.id] || "";
-  const [, drop] = useDrop(() => ({
+
+  const [, drop] = useDrop<DragItem>(() => ({
     accept: ItemType.CARD,
     drop: (item) => {
       moveCard(item.id, kanban.id);
@@ -58,7 +79,7 @@ const Column = ({ kanban, cards, moveCard }) => {
 
   return (
     <div
-      ref={drop}
+      ref={drop as unknown as React.Ref<HTMLDivElement>}
       className="
         flex flex-col
         w-90
@@ -69,7 +90,7 @@ const Column = ({ kanban, cards, moveCard }) => {
       "
     >
       <div
-        className={` text-stone-700 font-semibold text-sm px-4 py-3 border-b-[3px] ${borderColor}`}
+        className={`text-stone-700 font-semibold text-sm px-4 py-3 border-b-[3px] ${borderColor}`}
       >
         {kanban.text}
       </div>
@@ -92,10 +113,10 @@ const Column = ({ kanban, cards, moveCard }) => {
 };
 
 const Board = () => {
-  const [cards, setCards] = useState(cardsData);
-  const [kanbans] = useState(columnsData);
+  const [cards, setCards] = useState<CardType[]>(cardsData);
+  const [kanbans] = useState<KanbanColumn[]>(columnsData);
 
-  const moveCard = (cardId, targetColumnId) => {
+  const moveCard = (cardId: number, targetColumnId: string) => {
     setCards((prev) =>
       prev.map((card) =>
         card.id === cardId ? { ...card, column_id: targetColumnId } : card

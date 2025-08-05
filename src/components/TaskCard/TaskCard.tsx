@@ -1,17 +1,29 @@
 import { MessageCircle, Paperclip, Hourglass, Ellipsis } from "lucide-react";
+import type { CardAssignee } from "../../types";
+
+interface TaskCardProps {
+  priority: string;
+  text: string;
+  subText: string;
+  assignees: CardAssignee[];
+  comments: string[];
+  links: string[];
+  progress: string;
+  ref: any;
+  isDragging: boolean;
+}
 
 const TaskCard = ({
   priority = "High",
   text = "",
   subText,
   assignees,
-  dueDate,
   comments,
   links,
   progress = "50",
   ref,
   isDragging,
-}) => {
+}: TaskCardProps) => {
   return (
     <div
       className={`bg-white p-2 flex flex-col shadow-md rounded-lg w-full hover:shadow-lg transition cursor-pointer ${
@@ -54,7 +66,7 @@ const TaskCard = ({
           </div>
         </div>
         <div className="flex items-center -space-x-2">
-          {assignees.map(({ name, imageUrl, id, imageUrlSecondary }) => {
+          {assignees.map(({ imageUrl, id, imageUrlSecondary }) => {
             console.log("Rendering assignee:", { imageUrl });
             return (
               <picture key={id}>

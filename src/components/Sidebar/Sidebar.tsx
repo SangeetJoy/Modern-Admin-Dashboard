@@ -1,7 +1,6 @@
 import RouteSelect from "../RouteSelect/RouteSelect";
 import SearchBar from "../SearchBar/SearchBar";
 import SideBarFooter from "../SideBarFooter/SideBarFooter";
-import Settings from "../SideBarFooter/SideBarFooter";
 
 const Title = () => {
   return (

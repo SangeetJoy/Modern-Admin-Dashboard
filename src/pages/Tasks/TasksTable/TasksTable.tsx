@@ -6,6 +6,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import type { ColumnDef, ColumnFiltersState } from "@tanstack/react-table";
 import { TABLE_DATA_1 } from "../../../../data";
 import { useState } from "react";
 import StatusPopover from "../../../components/StatusPopover/StatusPopover";
@@ -13,8 +14,13 @@ import ProfilePopover from "../../../components/ProfilePopover/ProfilePopover";
 import Filters from "../Filters/Filters";
 import Pagination from "../../../components/Pagination/Pagination";
 import { CircleCheckBig, ArrowUpDown } from "lucide-react";
+import type { TableProps } from "../../../../data";
 
-const SelectedStatusSummary = ({ selectedStatuses }) => {
+const SelectedStatusSummary = ({
+  selectedStatuses,
+}: {
+  selectedStatuses: string[];
+}) => {
   if (!selectedStatuses.length) return null;
 
   return (
@@ -49,7 +55,7 @@ const SelectedStatusSummary = ({ selectedStatuses }) => {
   );
 };
 
-const columns = [
+const columns: ColumnDef<TableProps>[] = [
   {
     accessorKey: "task",
     header: () => <span className="flex items-center">Task</span>,
@@ -77,7 +83,7 @@ const columns = [
     enableColumnFilter: true,
     filterFn: (row, columnId, filterStatuses) => {
       if (filterStatuses.length === 0) return true;
-      const status = row.getValue(columnId);
+      const status = row.getValue(columnId) as { id: string };
       return filterStatuses.includes(status?.id);
     },
   },
@@ -98,10 +104,10 @@ const columns = [
 ];
 
 const TasksTable = () => {
-  const [data, setData] = useState(TABLE_DATA_1);
-  const [columnFilters, setColumnFilters] = useState([]);
+  const [data, setData] = useState<TableProps[]>(TABLE_DATA_1);
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
-  const table = useReactTable({
+  const table = useReactTable<TableProps>({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
@@ -114,7 +120,7 @@ const TasksTable = () => {
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     meta: {
-      updateData: (rowIndex, columnId, value) =>
+      updateData: (rowIndex: number, columnId: string, value: any) =>
         setData((prev) =>
           prev.map((row, index) =>
             index === rowIndex ? { ...prev[rowIndex], [columnId]: value } : row
@@ -124,7 +130,8 @@ const TasksTable = () => {
   });
 
   const filterStatuses =
-    columnFilters.find((filter) => filter.id === "status")?.value || [];
+    (columnFilters.find((filter) => filter.id === "status")
+      ?.value as string[]) || [];
 
   const idToName = new Map<number, string>(
     TABLE_DATA_1.map((item) => [
@@ -133,7 +140,12 @@ const TasksTable = () => {
     ])
   );
 
-  const finalArray = filterStatuses.map((id) => idToName.get(id) || []);
+  const finalArray = (filterStatuses as string[]).map(
+    (id) => idToName.get(Number(id)) || []
+  );
+  const cleanedArray = finalArray
+    .flat()
+    .filter((s): s is string => typeof s === "string");
 
   console.log({ filterStatuses, finalArray, idToName });
 
@@ -146,7 +158,7 @@ const TasksTable = () => {
         setColumnFilters={setColumnFilters}
       />
       {Boolean(filterStatuses.length) && (
-        <SelectedStatusSummary selectedStatuses={finalArray} />
+        <SelectedStatusSummary selectedStatuses={cleanedArray} />
       )}
       <div className="overflow-x-auto shadow-md rounded-lg bg-white">
         <table className="min-w-full table-fixed w-full border-collapse">
@@ -175,7 +187,7 @@ const TasksTable = () => {
                         {
                           asc: "⬆️",
                           desc: "⬇️",
-                        }[header.column.getIsSorted()]
+                        }[header.column.getIsSorted() as "asc" | "desc"]
                       }
                     </div>
                     <div

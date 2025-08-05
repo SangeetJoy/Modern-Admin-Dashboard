@@ -1,8 +1,11 @@
 import { clsx } from "clsx"; // optional, for conditional classes
 import { LoaderCircle, NotebookPen, CheckCheck, ShieldX } from "lucide-react";
+import type { JSX } from "react";
+
+type Status = "in progress" | "in review" | "done" | "blocked";
 
 const StatusBadge = ({ name }: { name: string }) => {
-  const config = {
+  const config: Record<Status, { icon: JSX.Element; bg: string }> = {
     "in progress": {
       icon: <LoaderCircle className="animate-spin mr-1" size={18} />,
       bg: "bg-yellow-300 text-gray-700",
@@ -21,7 +24,8 @@ const StatusBadge = ({ name }: { name: string }) => {
     },
   };
 
-  const status = config[name.toLowerCase()] || config["in progress"];
+  const lowerName = name.toLowerCase() as Status;
+  const status = config[lowerName] || config["in progress"];
 
   return (
     <div

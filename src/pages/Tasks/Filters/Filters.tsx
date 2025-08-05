@@ -3,8 +3,20 @@ import MenuItem from "../../../components/MenuItem/MenuItem";
 import { STATUSES } from "../../../../data";
 import { StatusIconMap } from "../../../components/StatusPopover/StatusPopover";
 import { Search, Funnel, Check, ChevronDown } from "lucide-react";
+import type { ColumnFiltersState } from "@tanstack/react-table";
+import type { FC } from "react";
 
-const StatusFilterButton = () => {
+type FiltersProps = {
+  setColumnFilters: React.Dispatch<React.SetStateAction<ColumnFiltersState>>;
+  columnFilters: ColumnFiltersState;
+};
+
+type SearchFilterProps = {
+  onSearchFilterChange: (id: string, value: string) => void;
+  searchFilterValue: string;
+};
+
+const StatusFilterButton: FC = () => {
   return (
     <button
       className="
@@ -27,21 +39,24 @@ const StatusFilterButton = () => {
   );
 };
 
-const SearchFilter = ({ onSearchFilterChange, searchFilterValue }) => {
+const SearchFilter: FC<SearchFilterProps> = ({
+  onSearchFilterChange,
+  searchFilterValue,
+}) => {
   return (
     <div
       className="
-      flex items-center 
-      h-10
-      rounded-lg 
-      px-3 
-      shadow-sm 
-      focus-within:ring-2 
-      focus-within:ring-stone-600 
-      w-72 
-      border border-stone-300
-      bg-white
-    "
+        flex items-center 
+        h-10
+        rounded-lg 
+        px-3 
+        shadow-sm 
+        focus-within:ring-2 
+        focus-within:ring-stone-600 
+        w-72 
+        border border-stone-300
+        bg-white
+      "
     >
       <Search className="mr-2 text-stone-500 text-sm" size={18} />
       <input
@@ -55,42 +70,40 @@ const SearchFilter = ({ onSearchFilterChange, searchFilterValue }) => {
   );
 };
 
-const Filters = ({ setColumnFilters, columnFilters }) => {
+const Filters: FC<FiltersProps> = ({ setColumnFilters, columnFilters }) => {
   const searchFilterValue =
-    columnFilters.find((filter) => filter.id === "task")?.value || "";
+    (columnFilters.find((filter) => filter.id === "task")?.value as string) ||
+    "";
 
   const filterStatuses =
-    columnFilters.find((filter) => filter.id === "status")?.value || [];
+    (columnFilters.find((filter) => filter.id === "status")?.value as
+      | number[]
+      | undefined) || [];
 
-  const onSearchFilterChange = (id, value) => {
+  const onSearchFilterChange = (id: string, value: string) => {
     setColumnFilters((prev) => [
       ...prev.filter((f) => f.id !== id),
       { id, value },
     ]);
   };
 
-  const onStatusFilterClick = (statusId, isActive) => {
+  const onStatusFilterClick = (statusId: number, isActive: boolean) => {
     setColumnFilters((prev) => {
-      const statuses = prev.find((filter) => filter.id === "status")?.value;
+      const statuses =
+        (prev.find((filter) => filter.id === "status")?.value as
+          | number[]
+          | undefined) || [];
 
-      if (!statuses) {
-        return [...prev, { id: "status", value: [statusId] }];
-      }
+      const updatedStatuses = isActive
+        ? statuses.filter((s) => s !== statusId)
+        : [...statuses, statusId];
 
-      return prev.map((filter) =>
-        filter.id === "status"
-          ? {
-              ...filter,
-              value: isActive
-                ? statuses.filter((statusFilter) => statusFilter !== statusId)
-                : [...statuses, statusId],
-            }
-          : filter
-      );
+      return [
+        ...prev.filter((f) => f.id !== "status"),
+        { id: "status", value: updatedStatuses },
+      ];
     });
   };
-
-  // console.log({ columnFilters });
 
   return (
     <div className="flex gap-3 mb-5 items-center">
@@ -100,9 +113,8 @@ const Filters = ({ setColumnFilters, columnFilters }) => {
       />
       <Popover trigger={<StatusFilterButton />}>
         {STATUSES.map((status) => (
-          <div className="px-3 py-1.5 flex items-center my-1">
+          <div key={status.id} className="px-3 py-1.5 flex items-center my-1">
             <MenuItem
-              key={status.id}
               icon={StatusIconMap[status.name.toLowerCase()].icon}
               label={status.name}
               onClick={() =>
