@@ -2,9 +2,8 @@ import ProfileCard from "../../components/ProfileCard/ProfileCard";
 
 const Teams = () => {
   return (
-    <div>
-      {" "}
-      <div className="flex justify-between gap-3 p-5 mt-5">
+    <div className="p-5 mt-5">
+      <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 justify-between">
         <ProfileCard
           name="sangeet joy"
           role="tester"

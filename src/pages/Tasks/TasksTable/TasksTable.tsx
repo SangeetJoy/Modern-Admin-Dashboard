@@ -157,70 +157,85 @@ const TasksTable = () => {
         columnFilters={columnFilters}
         setColumnFilters={setColumnFilters}
       />
+
       {Boolean(filterStatuses.length) && (
         <SelectedStatusSummary selectedStatuses={cleanedArray} />
       )}
-      <div className="overflow-x-auto shadow-md rounded-lg bg-white">
-        <table className="min-w-full table-fixed w-full border-collapse">
-          <thead className="border-b border-gray-300">
-            {table.getHeaderGroups().map((headerGroup) => (
-              <tr key={headerGroup.id} className="bg-stone-200">
-                {headerGroup.headers.map((header) => (
-                  <th
-                    key={header.id}
-                    className="group px-6 py-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider relative"
-                    style={{ width: `${header.getSize()}px` }}
-                  >
-                    <div className="flex items-center gap-2">
-                      {flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
-                      )}
-                      {header.column.getCanSort() && (
-                        <ArrowUpDown
-                          onClick={header.column.getToggleSortingHandler()}
-                          size={14}
-                          className="hover:text-stone-800"
-                        />
-                      )}
-                      {
+
+      {/* ✅ Scroll wrapper for responsiveness */}
+      <div className="w-full overflow-x-auto">
+        <div className="min-w-[700px] md:min-w-full shadow-md rounded-lg bg-white">
+          <table className="w-full border-collapse">
+            <thead className="border-b border-gray-300">
+              {table.getHeaderGroups().map((headerGroup) => (
+                <tr key={headerGroup.id} className="bg-stone-200">
+                  {headerGroup.headers.map((header) => (
+                    <th
+                      key={header.id}
+                      className="group px-4 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider relative"
+                      style={{
+                        width: `${header.getSize()}px`,
+                        minWidth: "120px",
+                      }} // ✅ Prevent collapse
+                    >
+                      <div className="flex items-center gap-2">
+                        {flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                        {header.column.getCanSort() && (
+                          <ArrowUpDown
+                            onClick={header.column.getToggleSortingHandler()}
+                            size={14}
+                            className="hover:text-stone-800"
+                          />
+                        )}
                         {
-                          asc: "⬆️",
-                          desc: "⬇️",
-                        }[header.column.getIsSorted() as "asc" | "desc"]
-                      }
-                    </div>
-                    <div
-                      onMouseDown={header.getResizeHandler()}
-                      onTouchStart={header.getResizeHandler()}
-                      className={`resize absolute opacity-0 group-hover:opacity-100 top-0 right-0 h-full w-[4px] ${
-                        header.column.getIsResizing()
-                          ? "bg-green-500"
-                          : "bg-blue-500"
-                      }  cursor-col-resize select-none touch-none rounded-md transition-opacity duration-200`}
-                    ></div>
-                  </th>
-                ))}
-              </tr>
-            ))}
-          </thead>
-          <tbody className="bg-white">
-            {table.getRowModel().rows.map((row) => (
-              <tr key={row.id} className="hover:bg-stone-50">
-                {row.getVisibleCells().map((cell) => (
-                  <td
-                    key={cell.id}
-                    className="px-6 py-6 whitespace-nowrap text-sm text-gray-500"
-                    style={{ width: `${cell.column.getSize()}px` }}
-                  >
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                          {
+                            asc: "⬆️",
+                            desc: "⬇️",
+                          }[header.column.getIsSorted() as "asc" | "desc"]
+                        }
+                      </div>
+                      <div
+                        onMouseDown={header.getResizeHandler()}
+                        onTouchStart={header.getResizeHandler()}
+                        className={`resize absolute opacity-0 group-hover:opacity-100 top-0 right-0 h-full w-[4px] ${
+                          header.column.getIsResizing()
+                            ? "bg-green-500"
+                            : "bg-blue-500"
+                        }  cursor-col-resize select-none touch-none rounded-md transition-opacity duration-200`}
+                      ></div>
+                    </th>
+                  ))}
+                </tr>
+              ))}
+            </thead>
+            <tbody className="bg-white">
+              {table.getRowModel().rows.map((row) => (
+                <tr key={row.id} className="hover:bg-stone-50">
+                  {row.getVisibleCells().map((cell) => (
+                    <td
+                      key={cell.id}
+                      className="px-4 py-4 whitespace-nowrap text-sm text-gray-500"
+                      style={{
+                        width: `${cell.column.getSize()}px`,
+                        minWidth: "120px",
+                      }}
+                    >
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
+
       <Pagination table={table} />
     </div>
   );
