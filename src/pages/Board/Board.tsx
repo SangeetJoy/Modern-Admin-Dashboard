@@ -5,6 +5,7 @@ import TopBar from "../../components/TopBar/TopBar";
 import { cardsData } from "../../../data";
 import TaskCard from "../../components/TaskCard/TaskCard";
 import type { Card as CardType } from "../../types";
+import confetti from "canvas-confetti";
 
 type DragItem = {
   id: number;
@@ -117,6 +118,14 @@ const Board = () => {
   const [kanbans] = useState<KanbanColumn[]>(columnsData);
 
   const moveCard = (cardId: number, targetColumnId: string) => {
+    if (targetColumnId === "done") {
+      confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.4 },
+      });
+    }
+
     setCards((prev) =>
       prev.map((card) =>
         card.id === cardId ? { ...card, column_id: targetColumnId } : card
